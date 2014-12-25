@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+<title>Home</title>
+</head>
+<body>
+
+<h2>現在時刻：<span wicket:id="now"></span></h2>
+<a wicket:id="refresher" class="btn btn-default">
+  <span class="glyphicon glyphicon-refresh"></span>
+  Ajaxでリフレッシュ
+</a>
+
+<hr/>
+<div wicket:id="feedback"></div>
+<form wicket:id="newEmployeeForm">
+  <h3>従業員追加</h3>
+  <input type="text" wicket:id="newEmployeeName" placeholder="名前">
+  <button wicket:id="submitter" class="btn btn-primary">
+    <span class="glyphicon glyphicon-ok"></span>
+    登録
+  </button>
+</form>
+
+<hr/>
+<h3>従業員一覧</h3>
+<ul wicket:id="employeesContainer">
+  <li wicket:id="employees">
+    <label wicket:id="id"></label>
+    <span wicket:id="name"></span>
+    <form wicket:id="employeeDeleteForm" class="employee-delete-form">
+      <button wicket:id="deleter" class="btn btn-sml btn-danger">
+        <span class="glyphicon glyphicon-trash"></span>
+      </button>
+    </form>
+  </li>
+</ul>
+
+</body>
+</html>
