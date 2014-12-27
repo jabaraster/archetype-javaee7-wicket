@@ -7,6 +7,7 @@ import ${package}.entity.EEmployee;
 import ${package}.entity.EEmployee_;
 import ${package}.service.EmployeeService;
 import jabara.general.Empty;
+import jabara.jpa.entity.EntityBase_;
 import jabara.wicket.ComponentCssHeaderItem;
 import jabara.wicket.Models;
 import jabara.wicket.ValidatorUtil;
@@ -21,6 +22,8 @@ import javax.inject.Inject;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
+import org.apache.wicket.extensions.ajax.markup.html.IndicatingAjaxButton;
+import org.apache.wicket.extensions.ajax.markup.html.IndicatingAjaxLink;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -87,12 +90,14 @@ public class HomePage extends WebPageBase {
                 @Override
                 protected void populateItem(final ListItem<EEmployee> pItem) {
                     pItem.setModel(new CompoundPropertyModel<>(pItem.getModelObject()));
-                    pItem.add(new Label("id")); //$NON-NLS-1$
-                    pItem.add(new Label("name")); //$NON-NLS-1$
+                    pItem.add(new Label(EntityBase_.id.getName()));
+                    pItem.add(new Label(EEmployee_.name.getName()));
+                    pItem.add(new Label(EntityBase_.created.getName() //
+                            , Models.of(DateFormat.getDateTimeInstance().format(pItem.getModelObject().getCreated()))));
 
-                    final AjaxButton deleter = new AjaxButton("deleter") { //$NON-NLS-1$
+                    final AjaxButton deleter = new IndicatingAjaxButton("deleter") { //$NON-NLS-1$
                         @Override
-                        protected void onSubmit(final AjaxRequestTarget pTarget, final Form<?> pForm) {
+                        protected void onSubmit(final AjaxRequestTarget pTarget, @SuppressWarnings("unused") final Form<?> pForm) {
                             HomePage.this.handler.onDeleteSubmit(pTarget, pItem.getModelObject());
                         }
                     };
@@ -152,7 +157,7 @@ public class HomePage extends WebPageBase {
 
     private AjaxLink<?> getRefresher() {
         if (this.refresher == null) {
-            this.refresher = new AjaxLink<Object>(id()) {
+            this.refresher = new IndicatingAjaxLink<Object>(id()) {
                 @Override
                 public void onClick(final AjaxRequestTarget pTarget) {
                     HomePage.this.handler.onRefresh(pTarget);
@@ -164,7 +169,7 @@ public class HomePage extends WebPageBase {
 
     private AjaxButton getSubmitter() {
         if (this.submitter == null) {
-            this.submitter = new AjaxButton(id()) {
+            this.submitter = new IndicatingAjaxButton(id()) {
                 @Override
                 protected void onError(final AjaxRequestTarget pTarget, @SuppressWarnings("unused") final Form<?> pForm) {
                     HomePage.this.handler.onError(pTarget);

@@ -58,7 +58,7 @@
         <dependency>
             <groupId>jabaraster</groupId>
             <artifactId>jabara-jpa</artifactId>
-            <version>1.7.0</version>
+            <version>1.7.1</version>
         </dependency>
 
         <dependency>
@@ -77,12 +77,12 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.181</version>
-            <scope>runtime</scope>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>Hoge</finalName>
+        <finalName>${artifactId}</finalName>
 
         <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
         <testOutputDirectory>src/main/webapp/WEB-INF/test-classes</testOutputDirectory>
