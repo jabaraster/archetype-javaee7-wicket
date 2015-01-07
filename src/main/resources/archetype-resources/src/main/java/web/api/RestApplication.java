@@ -1,7 +1,7 @@
 /**
  * 
  */
-package info.jabara.sandbox.web.api;
+package ${package}.web.api;
 
 import java.util.Arrays;
 import java.util.HashSet;

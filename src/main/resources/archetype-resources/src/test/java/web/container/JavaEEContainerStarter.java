@@ -39,7 +39,7 @@ public final class JavaEEContainerStarter {
         final GlassFish glassfish = GlassFishRuntime.bootstrap().newGlassFish(properties);
         glassfish.start();
 
-        final String connectionPoolName = "ConnectionPool";
+        final String connectionPoolName = "AppConnectionPool";
         glassfish.getCommandRunner().run("create-jdbc-connection-pool" //
                 , "--datasourceclassname=" + JdbcDataSource.class.getName() //
                 , "--restype=" + DataSource.class.getName() //

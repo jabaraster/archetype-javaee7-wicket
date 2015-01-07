@@ -14,7 +14,7 @@ public final class Environment {
     /**
      * 
      */
-    public static final String  APPLICATION_NAME                         = "Hoge";                                                                         //$NON-NLS-1$
+    public static final String  APPLICATION_NAME                         = "${artifactId}";                                                                         //$NON-NLS-1$
 
     private static final String PARAM_PREFIX                             = APPLICATION_NAME + "_";                                                        //$NON-NLS-1$
 
@@ -51,7 +51,7 @@ public final class Environment {
     /**
      * 
      */
-    public static final String  DEFAULT_COPYRIGHT                        = "Jabaraster " + Calendar.getInstance().get(Calendar.YEAR);                     //$NON-NLS-1$
+    public static final String  DEFAULT_COPYRIGHT                        = APPLICATION_NAME + " " + Calendar.getInstance().get(Calendar.YEAR);                     //$NON-NLS-1$
 
     private Environment() {
         // 処理なし

@@ -1,10 +1,10 @@
 /**
  * 
  */
-package info.jabara.sandbox.web.api;
+package ${package}.web.api;
 
-import info.jabara.sandbox.entity.EEmployee;
-import info.jabara.sandbox.service.EmployeeService;
+import ${package}.entity.EEmployee;
+import ${package}.service.EmployeeService;
 
 import java.util.List;
 
