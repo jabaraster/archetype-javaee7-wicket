@@ -46,7 +46,7 @@ public class JavaEEConfigurator implements ServletContextListener {
     }
 
     private static void setUpWicket(final ServletContext pServletContext) {
-        final String PATH = "/ui/*"; //$NON-NLS-1$
+        final String PATH = "/*"; //$NON-NLS-1$
         final Dynamic d = pServletContext.addFilter(ExWicketFilter.class.getName(), ExWicketFilter.class);
         d.setInitParameter(WicketFilter.FILTER_MAPPING_PARAM, PATH);
         d.setInitParameter(WicketFilter.APP_FACT_PARAM, WebApplicationFactoryImpl.class.getName());
