@@ -58,13 +58,13 @@
         <dependency>
             <groupId>jabaraster</groupId>
             <artifactId>jabara-jpa</artifactId>
-            <version>1.7.1</version>
+            <version>1.7.2</version>
         </dependency>
 
         <dependency>
             <groupId>jabaraster</groupId>
             <artifactId>jabara-general</artifactId>
-            <version>1.7.3</version>
+            <version>1.7.4</version>
         </dependency>
 
         <dependency>
@@ -151,6 +151,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
@@ -164,7 +165,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.3.2</version>
                 <configuration>
-                    <mainClass>${package}.container.JavaEEContainerStarter</mainClass>
+                    <mainClass>${package}.web.container.JavaEEContainerStarter</mainClass>
                     <classpathScope>test</classpathScope>
                     <systemProperties>
                         <!--
