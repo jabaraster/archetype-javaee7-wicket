@@ -16,7 +16,7 @@ import javax.persistence.PersistenceUnit;
 @Singleton
 public class PersistenceUnitProvider implements Provider<EntityManagerFactory> {
 
-    @PersistenceUnit(name = Environment.APPLICATION_NAME)
+    @PersistenceUnit(unitName = Environment.APPLICATION_NAME)
     EntityManagerFactory entityManagerFactory;
 
     /**
