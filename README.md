@@ -1,3 +1,3 @@
 ```
-mvn archetype:generate -DgroupId=sandbox -DartifactId=Sandbox -DarchetypeGroupId=info.jabara -DarchetypeArtifactId=archetype-javaee7-wicket -DarchetypeVersion=1.0.0-SNAPSHOT
+mvn archetype:generate -DgroupId=sandbox -DartifactId=Sandbox -DarchetypeGroupId=info.jabara -DarchetypeArtifactId=archetype-javaee7-wicket -DarchetypeVersion=1.0.0-SNAPSHOT -DarchetypeCatalog=http://jabaraster.github.io/maven/
 ```
