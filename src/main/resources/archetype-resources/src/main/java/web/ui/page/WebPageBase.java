@@ -2,6 +2,7 @@ package ${package}.web.ui.page;
 
 import ${package}.web.ui.bootstrap.BootstrapScope;
 import jabara.general.ArgUtil;
+import jabara.wicket.ComponentJavaScriptHeaderItem;
 
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
@@ -41,6 +42,7 @@ public abstract class WebPageBase extends WebPage {
     public void renderHead(final IHeaderResponse pResponse) {
         super.renderHead(pResponse);
         renderCommonHead(pResponse);
+        pResponse.render(ComponentJavaScriptHeaderItem.forType(WebPageBase.class));
     }
 
     /**
