@@ -5,7 +5,7 @@
 
     <persistence-unit name="${artifactId}" transaction-type="JTA">
 
-        <jta-data-source>jdbc/${artifactId}</jta-data-source>
+        <jta-data-source>jdbc/App</jta-data-source>
 		<class>jabara.jpa.entity.EntityBase</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<validation-mode>CALLBACK</validation-mode>

@@ -52,13 +52,19 @@
         <dependency>
             <groupId>jabaraster</groupId>
             <artifactId>jabara-wicket</artifactId>
-            <version>2.8.3</version>
+            <version>2.9.0</version>
         </dependency>
 
         <dependency>
             <groupId>jabaraster</groupId>
             <artifactId>jabara-jpa</artifactId>
             <version>1.7.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jabaraster</groupId>
+            <artifactId>jabara-servlet</artifactId>
+            <version>1.3.1</version>
         </dependency>
 
         <dependency>

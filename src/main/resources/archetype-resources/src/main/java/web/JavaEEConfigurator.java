@@ -3,6 +3,8 @@
  */
 package ${package}.web;
 
+import jabara.servlet.HeartBeat;
+
 import java.util.EnumSet;
 
 import javax.enterprise.inject.spi.BeanManager;
@@ -18,6 +20,7 @@ import org.apache.wicket.protocol.http.IWebApplicationFactory;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.protocol.http.WicketFilter;
 
+import ${package}.service.internal.PersistenceUnitProvider;
 import ${package}.web.ui.WicketApplication;
 
 /**
@@ -27,7 +30,7 @@ import ${package}.web.ui.WicketApplication;
 public class JavaEEConfigurator implements ServletContextListener {
 
     @Inject
-    BeanManager injector;
+    private PersistenceUnitProvider persistenceUnitProvider;
 
     /**
      * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
@@ -42,7 +45,20 @@ public class JavaEEConfigurator implements ServletContextListener {
      */
     @Override
     public void contextInitialized(final ServletContextEvent pEvent) {
+        setUpHeartBeat(pEvent);
+        setUpJpa();
         setUpWicket(pEvent.getServletContext());
+    }
+
+    private void setUpJpa() {
+        // JPAメタデータクラスのstaticフィールドを初期化してもらう.
+        // これをやっておかないと、アプリケーション中でメタデータクラスを利用している箇所で
+        // NPEがスローされてしまう可能性が生じる.
+        this.persistenceUnitProvider.get().createEntityManager().close();
+    }
+
+    private static void setUpHeartBeat(final ServletContextEvent pEvent) {
+        pEvent.getServletContext().addServlet(HeartBeat.class.getName(), HeartBeat.class).addMapping("/ping"); //$NON-NLS-1$
     }
 
     private static void setUpWicket(final ServletContext pServletContext) {

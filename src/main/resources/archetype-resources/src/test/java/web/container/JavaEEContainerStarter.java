@@ -48,7 +48,7 @@ public final class JavaEEContainerStarter {
                 );
         glassfish.getCommandRunner().run("create-jdbc-resource" //
                 , "--connectionpoolid", connectionPoolName //
-                , "jdbc/" + Environment.getApplicationName() //
+                , "jdbc/App" //
         );
 
         glassfish.getDeployer().deploy( //
