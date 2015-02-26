@@ -67,7 +67,6 @@ public class HomePage extends WebPageBase {
         this.add(getNow());
         this.add(getRefresher());
 
-        this.add(getFeedback());
         this.add(getNewEmployeeForm());
 
         this.add(getEmployeesContainer());
@@ -129,6 +128,7 @@ public class HomePage extends WebPageBase {
     private Form<?> getNewEmployeeForm() {
         if (this.newEmployeeForm == null) {
             this.newEmployeeForm = new Form<>(id());
+            this.newEmployeeForm.add(getFeedback());
             this.newEmployeeForm.add(getNewEmployeeName());
             this.newEmployeeForm.add(getSubmitter());
         }

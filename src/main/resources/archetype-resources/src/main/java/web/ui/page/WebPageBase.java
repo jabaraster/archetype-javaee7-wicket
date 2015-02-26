@@ -1,25 +1,20 @@
 package ${package}.web.ui.page;
 
-import ${package}.web.ui.bootstrap.BootstrapScope;
-import jabara.general.ArgUtil;
-import jabara.wicket.ComponentJavaScriptHeaderItem;
+import ${package}.web.ui.bootstrap.BootstrapResource;
 
-import org.apache.wicket.markup.head.CssHeaderItem;
+import jabara.general.ArgUtil;
+
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.request.resource.CssResourceReference;
-import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.resource.JQueryResourceReference;
 
 /**
  * @author jabaraster
  */
 public abstract class WebPageBase extends WebPage {
-
-    private static final CssResourceReference        REF_BOOTSTRAP_CSS = new CssResourceReference(BootstrapScope.class, "css/bootstrap.min.css");     //$NON-NLS-1$
-    private static final JavaScriptResourceReference REF_BOOTSTRAP_JS  = new JavaScriptResourceReference(BootstrapScope.class, "js/bootstrap.min.js"); //$NON-NLS-1$
 
     /**
      * 
@@ -42,7 +37,19 @@ public abstract class WebPageBase extends WebPage {
     public void renderHead(final IHeaderResponse pResponse) {
         super.renderHead(pResponse);
         renderCommonHead(pResponse);
-        pResponse.render(ComponentJavaScriptHeaderItem.forType(WebPageBase.class));
+    }
+
+    /**
+     * URLにjsessionidが含まれている場合にリダイレクトするJavaScriptコードを出力します. <br>
+     * このメソッドは{@link # renderCommonHead(IHeaderResponse)}の中から呼び出されます. <br>
+     * 
+     * @param pResponse -
+     */
+    public static void renderAvoidingJSessionIdUrlScript(final IHeaderResponse pResponse) {
+        final String contextPath = RequestCycle.get().getRequest().getContextPath();
+        pResponse.render(JavaScriptHeaderItem.forScript( //
+                "if(location.href.indexOf('jsessionid')>=0){location.href='" + contextPath + "/';}" // //$NON-NLS-1$ //$NON-NLS-2$
+                , null));
     }
 
     /**
@@ -51,9 +58,11 @@ public abstract class WebPageBase extends WebPage {
     public static void renderCommonHead(final IHeaderResponse pResponse) {
         ArgUtil.checkNull(pResponse, "pResponse"); //$NON-NLS-1$
 
-        pResponse.render(CssHeaderItem.forReference(REF_BOOTSTRAP_CSS));
+        pResponse.render(BootstrapResource.CSS);
         pResponse.render(JavaScriptHeaderItem.forReference(JQueryResourceReference.get()));
-        pResponse.render(JavaScriptHeaderItem.forReference(REF_BOOTSTRAP_JS));
+        pResponse.render(BootstrapResource.SCRIPT);
+
+        renderAvoidingJSessionIdUrlScript(pResponse);
     }
 
     /**
