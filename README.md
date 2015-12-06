@@ -4,7 +4,7 @@ JavaEE7+WicketでWebアプリケーションを開発するためのMaven Archet
 もちろんEclipseでの開発が可能です. 必要なプラグインがほとんど無いので、開発環境の構築が簡単です.  
 
 # 前提
-(https://maven.apache.org)[Maven]3系を導入している必要があります.
+[Maven](https://maven.apache.org)3系を導入している必要があります.
 
 
 # プロジェクトの作成
