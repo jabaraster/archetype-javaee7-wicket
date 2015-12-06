@@ -7,7 +7,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 
-import javax.sql.DataSource;
+import javax.sql.ConnectionPoolDataSource;
 
 import org.glassfish.embeddable.GlassFish;
 import org.glassfish.embeddable.GlassFishProperties;
@@ -42,7 +42,7 @@ public final class JavaEEContainerStarter {
         final String connectionPoolName = "AppConnectionPool";
         glassfish.getCommandRunner().run("create-jdbc-connection-pool" //
                 , "--datasourceclassname=" + JdbcDataSource.class.getName() //
-                , "--restype=" + DataSource.class.getName() //
+                , "--restype=" + ConnectionPoolDataSource.class.getName() //
                 , "--property", "url=jdbc\\:h2\\:" + Environment.getH2DatabasePath() //
                 , connectionPoolName //
                 );
@@ -58,7 +58,7 @@ public final class JavaEEContainerStarter {
 
         new BufferedReader(new InputStreamReader(System.in)).readLine();
         glassfish.stop();
-        jabara.Debug.write("GlassFishサーバを停止.");
+        jabara.Debug.write("GlassFish繧ｵ繝ｼ繝舌ｒ蛛懈ｭ｢.");
     }
 
 }

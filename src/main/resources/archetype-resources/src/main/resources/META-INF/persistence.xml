@@ -18,6 +18,9 @@
 			http://stackoverflow.com/questions/4676705/jpa-2-0-logging-and-tracing-through-with-glassfish-3-0-1-and-netbeans-6-9-1
 			 -->
 			<property name="eclipselink.logging.logger" value="org.eclipse.persistence.logging.DefaultSessionLog"/>
+
+            <!-- eclipselinkの２次キャッシュは切っておくのが無難. -->
+			<property name="eclipselink.cache.shared.default" value="false"/>
 		</properties>
 
 	</persistence-unit>

@@ -20,7 +20,6 @@ import org.apache.wicket.protocol.http.IWebApplicationFactory;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.protocol.http.WicketFilter;
 
-import ${package}.service.internal.PersistenceUnitProvider;
 import ${package}.web.ui.WicketApplication;
 
 /**
@@ -46,7 +45,6 @@ public class JavaEEConfigurator implements ServletContextListener {
     @Override
     public void contextInitialized(final ServletContextEvent pEvent) {
         setUpHeartBeat(pEvent);
-        setUpJpa();
         setUpWicket(pEvent.getServletContext());
     }
 
