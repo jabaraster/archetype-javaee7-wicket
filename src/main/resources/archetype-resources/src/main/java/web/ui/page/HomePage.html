@@ -19,8 +19,11 @@
   <form wicket:id="newEmployeeForm">
     <h3>従業員追加</h3>
     <div wicket:id="feedback"></div>
-    <input type="text" wicket:id="newEmployeeName" placeholder="名前">
-    <button wicket:id="submitter" class="btn btn-primary">
+    <div class="form-group">
+      <label>名前</label>
+      <input type="text" wicket:id="newEmployeeName" class="form-control" placeholder="重複注意">
+    </div>
+    <button wicket:id="submitter" class="btn btn-primary form-control">
       <span class="glyphicon glyphicon-ok"></span>
       登録
     </button>
@@ -28,18 +31,24 @@
   
   <hr/>
   <h3>従業員一覧</h3>
-  <ul wicket:id="employeesContainer">
-    <li wicket:id="employees">
-      <label wicket:id="id"></label>
-      ：<span wicket:id="name"></span>
-      ：<span wicket:id="created"></span>
-      <form wicket:id="employeeDeleteForm" class="employee-delete-form">
-        <button wicket:id="deleter" class="btn btn-sml btn-danger">
-          <span class="glyphicon glyphicon-trash"></span>
-        </button>
-      </form>
-    </li>
-  </ul>
+  <table wicket:id="employeesContainer" class="table table-striped">
+    <thead>
+    </thead>
+    <tbody>
+      <tr wicket:id="employees">
+        <td wicket:id="id"></td>
+        <td wicket:id="name"></td>
+        <td wicket:id="created"></td>
+        <td>
+          <form wicket:id="employeeDeleteForm" class="employee-delete-form">
+            <button wicket:id="deleter" class="btn btn-sml btn-danger">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 </body>

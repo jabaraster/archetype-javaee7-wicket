@@ -13,7 +13,7 @@ mvnコマンドを使います.
 下記はコマンド例です.
 
 ```
-mvn -B archetype:generate -DgroupId=sandbox -DartifactId=Sandbox -DarchetypeGroupId=info.jabara -DarchetypeArtifactId=archetype-javaee7-wicket -DarchetypeVersion=1.0.0 -DarchetypeCatalog=http://jabaraster.github.io/maven/
+mvn -B archetype:generate -DgroupId=sandbox -DartifactId=Sandbox -DarchetypeGroupId=info.jabara -DarchetypeArtifactId=archetype-javaee7-wicket -DarchetypeVersion=1.0.1 -DarchetypeCatalog=http://jabaraster.github.io/maven/
 ```
 
 groupId,artifactIdは適宜変更して下さい.

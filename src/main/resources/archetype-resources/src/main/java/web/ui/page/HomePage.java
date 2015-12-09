@@ -1,16 +1,7 @@
 /**
- * 
+ *
  */
 package ${package}.web.ui.page;
-
-import ${package}.entity.EEmployee;
-import ${package}.entity.EEmployee_;
-import ${package}.service.EmployeeService;
-import jabara.general.Empty;
-import jabara.jpa.entity.EntityBase_;
-import jabara.wicket.ComponentCssHeaderItem;
-import jabara.wicket.Models;
-import jabara.wicket.ValidatorUtil;
 
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -35,6 +26,15 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.LoadableDetachableModel;
+
+import jabara.general.Empty;
+import jabara.jpa.entity.EntityBase_;
+import jabara.wicket.ComponentCssHeaderItem;
+import jabara.wicket.Models;
+import jabara.wicket.ValidatorUtil;
+import ${package}.entity.EEmployee;
+import ${package}.entity.EEmployee_;
+import ${package}.service.EmployeeService;
 
 /**
  * @author jabaraster
@@ -61,15 +61,15 @@ public class HomePage extends WebPageBase {
     private ListView<EEmployee> employees;
 
     /**
-     * 
+     *
      */
     public HomePage() {
-        this.add(getNow());
-        this.add(getRefresher());
+        this.add(this.getNow());
+        this.add(this.getRefresher());
 
-        this.add(getNewEmployeeForm());
+        this.add(this.getNewEmployeeForm());
 
-        this.add(getEmployeesContainer());
+        this.add(this.getEmployeesContainer());
     }
 
     /**
@@ -89,10 +89,10 @@ public class HomePage extends WebPageBase {
                 @Override
                 protected void populateItem(final ListItem<EEmployee> pItem) {
                     pItem.setModel(new CompoundPropertyModel<>(pItem.getModelObject()));
-                    pItem.add(new Label(EntityBase_.id.getName()));
+                    pItem.add(new Label(EntityBase_.id.getName(), pItem.getModelObject().getId().getValueAsObject()));
                     pItem.add(new Label(EEmployee_.name.getName()));
                     pItem.add(new Label(EntityBase_.created.getName() //
-                            , Models.of(DateFormat.getDateTimeInstance().format(pItem.getModelObject().getCreated()))));
+                    , Models.of(DateFormat.getDateTimeInstance().format(pItem.getModelObject().getCreated()))));
 
                     final AjaxButton deleter = new IndicatingAjaxButton("deleter") { //$NON-NLS-1$
                         @Override
@@ -113,7 +113,7 @@ public class HomePage extends WebPageBase {
     private WebMarkupContainer getEmployeesContainer() {
         if (this.employeesContainer == null) {
             this.employeesContainer = new WebMarkupContainer(id());
-            this.employeesContainer.add(getEmployees());
+            this.employeesContainer.add(this.getEmployees());
         }
         return this.employeesContainer;
     }
@@ -128,9 +128,9 @@ public class HomePage extends WebPageBase {
     private Form<?> getNewEmployeeForm() {
         if (this.newEmployeeForm == null) {
             this.newEmployeeForm = new Form<>(id());
-            this.newEmployeeForm.add(getFeedback());
-            this.newEmployeeForm.add(getNewEmployeeName());
-            this.newEmployeeForm.add(getSubmitter());
+            this.newEmployeeForm.add(this.getFeedback());
+            this.newEmployeeForm.add(this.getNewEmployeeName());
+            this.newEmployeeForm.add(this.getSubmitter());
         }
         return this.newEmployeeForm;
     }
@@ -202,23 +202,23 @@ public class HomePage extends WebPageBase {
 
         void onDeleteSubmit(final AjaxRequestTarget pTarget, final EEmployee pDeleteTarget) {
             this.employeeService.delete(pDeleteTarget);
-            pTarget.add(getEmployeesContainer());
+            pTarget.add(HomePage.this.getEmployeesContainer());
         }
 
         void onError(final AjaxRequestTarget pTarget) {
-            pTarget.add(getFeedback());
+            pTarget.add(HomePage.this.getFeedback());
         }
 
         void onNewEmployeeSubmit(final AjaxRequestTarget pTarget) {
-            this.employeeService.insert(getNewEmployeeName().getModelObject());
+            this.employeeService.insert(HomePage.this.getNewEmployeeName().getModelObject());
 
-            getNewEmployeeName().setModelObject(Empty.STRING);
-            pTarget.add(getNewEmployeeName(), getEmployeesContainer());
-            pTarget.add(getFeedback());
+            HomePage.this.getNewEmployeeName().setModelObject(Empty.STRING);
+            pTarget.add(HomePage.this.getNewEmployeeName(), HomePage.this.getEmployeesContainer());
+            pTarget.add(HomePage.this.getFeedback());
         }
 
         void onRefresh(final AjaxRequestTarget pTarget) {
-            pTarget.add(getNow());
+            pTarget.add(HomePage.this.getNow());
         }
     }
 }
