@@ -5,6 +5,7 @@ package ${package}.web.api;
 
 import java.util.List;
 
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -18,6 +19,7 @@ import ${package}.service.EmployeeService;
  * @author jabaraster
  */
 @Path("employee")
+@Dependent
 public class EmployeeResource {
 
     @Inject
